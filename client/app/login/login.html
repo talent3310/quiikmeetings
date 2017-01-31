@@ -1,0 +1,68 @@
+<!-- START PAGE-CONTAINER -->
+<div class="login-wrapper ">
+    <!-- START Login Background Pic Wrapper-->
+    <div class="bg-pic">
+        <!-- START Background Pic-->
+        <img src="assets/img/quiik-login.jpg" data-src="assets/img/quiik-login.jpg" ui-jq="unveil" data-src-retina="assets/img/quiik-login.png" alt="" class="lazy">
+        <!-- END Background Pic-->
+        <!-- START Background Caption-->
+        <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-50">
+            <h2 class="semi-bold text-white">
+          Want a few extra days every month?</h2>
+            <p>
+                Measure your meetings with Quiik. You’ll see their value increase and time wasted decrease. Guaranteed.
+            </p>
+        </div>
+        <!-- END Background Caption-->
+    </div>
+    <!-- END Login Background Pic Wrapper-->
+    <!-- START Login Right Container-->
+    <div class="login-container bg-white">
+        <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+            <img src="assets/img/quiik-dark.png" alt="logo" data-src="assets/img/quiik-dark.png" ui-jq="unveil" data-src-retina="assets/img/quiik-dark@2x.png">
+            <p class="p-t-35">&nbsp;</p>
+            <!-- START Login Form -->
+            <form id="create-user-form"  class="p-t-15" role="form" name="form" ng-submit="login(form)" novalidate>
+                <!-- START Form Control-->
+                <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : login.username.$invalid && !login.username.$pristine }">
+                    <label>Email</label>
+                    <div class="controls">
+                        <input  type="email" class="form-control" id="email" name="email" placeholder="Username" required="required" ng-model="user.email" mongoose-error=''>
+                    </div>
+                </div>
+                <label class="help-block with-errors" ng-show='form.email.$error.mongoose'>{{ errors.email }}>.</label>
+                <!-- END Form Control-->
+                <!-- START Form Control-->
+                <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : login.password.$invalid && !login.password.$pristine }">
+                    <label>Password</label>
+                    <div class="controls">
+                        <input type="password" class="form-control col-md-10" id="password" name="password" placeholder="Password" required="required" ng-model="user.password">
+        
+                    </div>
+                </div>
+                <div class="help-block with-errors"></div>
+                <label class="error" for="password" ng-show="login.password.$invalid && !login.password.$pristine">This field is required.</label>
+                <!-- START Form Control-->
+                <div class="row">
+                    <div class="col-md-6 no-padding">
+                        <div class="checkbox ">
+                            <input type="checkbox" value="1" id="checkbox1">
+                            <label for="checkbox1">Keep Me Signed in</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Form Control-->
+                <button class="btn btn-primary btn-cons m-t-10" id="save-user" type="submit">Login</button>
+                <a href="/add-user" class="btn btn-danger btn-cons m-t-10" >Sign Up</a>
+
+			      <div class="form-group m-t-10">
+			        <a href="/password" class="">Forgot Password?</a>
+			      </div>
+			      
+            </form>
+
+        </div>
+    </div>
+    <!-- END Login Right Container-->
+</div>
+<!-- END PAGE CONTAINER -->

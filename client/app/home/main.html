@@ -1,0 +1,33 @@
+<div class="col-md-8">
+  <h2 class="page-header">Setup your cronofy calendar.</h2>
+  <div>
+    <div ng-show="isLoggedIn()">
+      <a ng-href="{{requestAuthorizationUrl}}">sync a calendar</a>
+    </div>
+    <div ng-show="!isLoggedIn()">
+      <a href="/login" class="btn btn-success" ng-show='!isLoggedIn()'>Login</a>
+      <a href="/new-user" class="btn btn-success" ng-show='!isLoggedIn()' >Sign UP</a>
+    </div>
+  </div>
+</div>
+<!-- <div class="col-md-8">
+  <h2 class="page-header">Setup your first meeting thread.</h2>
+  <div>
+    <div ng-show="isLoggedIn ()">
+      <p>A meeting thread can be made up of one or more meetings that you want to measure. You need to <a href="/select_calendar">sync a calendar</a> to get started. We currently have the following calendar options:</p>
+      <div class="home-step">
+        <div class="home-step-instruction pull-left">
+          Google Calendar
+        </div>
+        <div class="home-step-actions pull-right">
+          <a href="/select_calendar" ng-show="googleNeedsSync">Sync Account</a> <a href="/select_calendar" ng-hide="googleNeedsSync">Create Thread</a>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div ng-show="!isLoggedIn()">
+      <a href="/login" class="btn btn-success" ng-show='!isLoggedIn()'>Login</a>
+      <a href="/new-user" class="btn btn-success" ng-show='!isLoggedIn()' >Sign UP</a>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,135 @@
+<h2 class="page-header">Create Thread
+  <!--<a class="btn btn-primary pull-right" target="_blank" ng-hide="user.google_calendar_token" ng-href="{{authUrl}}"  ng-click="authorizeClicked()">Authorize</a>-->
+</h2>
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p>Instructions for each page will go here that Marco will write</p>
+</div>
+
+<div class="col-sm-12">
+  <form name="form" ng-submit="saveThread(form)" novalidate="">
+    <div class="form-group">
+      <div class="col-sm-6">
+        <label for="thread_name">Title</label>
+        <input  class="form-control" type="text" id="thread_name" placeholder="Thread title" ng-model="thread.name" required=""><br/>
+
+        <label>Purpose of the meeting</label><br/>
+        <div>
+          <textarea rows="3" class="form-control" name="meeting_purpose"  placeholder="Purpose of the Meeting" ng-model="thread.meeting_purpose" required=""></textarea>
+        </div><br/>
+
+        <label>Why you want it measured</label> <br/>
+        <div>
+          <textarea rows="3" class="form-control" name="reason"  placeholder="Why you want it measured" ng-model="thread.reason" required=""></textarea>
+        </div>
+
+        <div>
+          <div class="radio" ng-hide="thread_id">
+            <label><input type="radio" name="event_type" value="existing_events"  ng-click="showGoogleEventsDiv(true)" checked="checked">Using existing events</label><br/>
+          </div>
+          <div class="radio" ng-hide="thread_id">
+            <label><input type="radio" name="event_type" value="create_event"  ng-click="showGoogleEventsDiv(false)"  >Create new event</label>
+          </div>
+        </div>
+
+        <div ng-hide="showGoogleEvents">
+          <label>Event Title</label>
+          <input id="eventTitle" class="form-control" type="text" placeholder="Event title" ng-model="newEvent.summary"  ><br/>
+
+          <label>Date</label>
+          <div class='input-group date' >
+            <input id="startDate" type="text" class="form-control" placeholder="Event date" ng-model="newEvent.start"  date-picker />
+          </div>
+          <br/>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <p><b>Type of Meeting</b></p>
+        <div class="radio">
+          <label><input type="radio" ng-model="thread.meeting_type" name="meeting" value="Executive" checked='checked'>Executive</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" ng-model="thread.meeting_type" name="meeting" value="Marketing">Marketing</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" ng-model="thread.meeting_type" name="meeting" value="Sales">Sales</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" ng-model="thread.meeting_type" name="meeting" value="Development">Development</label>
+        </div>
+        <div class="radio">
+          <label><input  type="radio" ng-model="thread.meeting_type" name="meeting" value="Client / Project">Client / Project</label>
+        </div>
+        <br/>
+        <br/>
+
+        <p><b>Comments</b></p>
+        <div class="radio">
+          <label><input type="radio" ng-model="thread.comment_type" name="comments" value="Enable" checked>Enable</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" ng-model="thread.comment_type" name="comments" value="Anonymous">Anonymous</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" ng-model="thread.comment_type" name="comments" value="Auto">Auto</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12" ng-show="showGoogleEvents">
+      <div class="form-group">
+        <br/>
+        <br/>
+        <label for="daterange">Select Date:</label>
+        <div id="daterange" ng-model="dateRange"
+             style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" date-Range-Picker
+             ng-change="getEventsByDateRange()" required="required">
+          <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+          <span></span> <b class="caret"></b>
+        </div>
+        <div class="help-block with-errors"></div>
+      </div>
+
+      <div class="list-group">
+        <div class="alert alert-danger" ng-hide="googleEvents.length">No Event Available</div>
+        <div ng-repeat='event in googleEvents' class="list-group-item">
+          <h4 class="list-group-item-heading">
+            <input type="checkbox" ng-model="event.selected" ng-click="checkEventSelected($event, event)" > <b>{{event.summary}}</b>
+            - <a ng-href="{{event.htmlLink}}"  target="_blank">Details</a>
+            <span style="float: right" class="label label-success" ng-show="event.attendees.length">{{ (event.attendees.length) }} Participants </span>
+            <span style="float: right" class="label label-danger" ng-show="!event.attendees.length">{{ (event.attendees.length) }}0 Participants </span>
+          </h4>
+          <p class="list-group-item-text"> Date:  {{ (event.start.dateTime | date:'MM/dd/yyyy @ h:mma') || (event.start.date | date:'MM/dd/yyyy') }}
+            - {{ (event.end.dateTime |date:'MM/dd/yyyy @ h:mma') || (event.end.date | date:'MM/dd/yyyy') }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12" >
+      <button type="submit" class="btn btn-primary" value="submit">Save</button>
+      <a  class="btn btn-primary" href="/threads/">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<!-- bootstrap dialog for auth code -->
+<cl-bootstrap-dialog bt-dialog="dialog">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="availabilityLabel">Enter  Code</h4>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="auth_code">Enter Code:</label>
+      <input type="text" id="auth_code" placeholder="auth_code" ng-model="google.auth_code" class="form-control">
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" id="btn-send-invite" ng-click="saveCode()">Save</button>
+    <button type="button" class="btn btn-default" id="btn-close-modal" data-dismiss="modal">Cancel</button>
+  </div>
+</cl-bootstrap-dialog>

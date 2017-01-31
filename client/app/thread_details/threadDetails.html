@@ -1,0 +1,72 @@
+<div ng-include=" 'tpl/blocks/sidebar.html'"></div>
+<div class="page-container">
+	<div class="page-content-wrapper">
+        <!-- START PAGE CONTENT -->
+        <div class="content">
+            <div class="full-height full-width" ui-view>
+            	
+            	<nav class="secondary-sidebar no-padding ng-scope">
+					<div class="sidebar-header">
+						<div class="title"><a href="/threads/"><i class="fa fa-arrow-left"></i> All threads</a></div>
+					</div>
+					<nav class="secondary-sidebar no-padding ng-scope">
+					<div class="thread-meetings vcenter">
+						<p class="text-right">Select the meetings you want to add to your thread. Use the date range above to adjust how many meetings we'll load from your calendar.</p>
+						<button class="btn btn-primary btn-lg btn-block" ng-click="addSearchResults ()">Next</button>
+					</div>
+				</nav><!-- END secondary-sidebar -->
+				</nav><!-- END secondary-sidebar -->
+				
+            	<div class="container-fluid container-fixed-lg inner-content full-height ng-scope">
+	            	<div class="row">
+	            		<div class="col-sm-12">
+	            			<div class="jumbotron padding-20 ng-scope" data-pages="parallax">
+								<div class="container-fluid container-fixed-lg">
+									<div class="inner" style="transform: translateY(0px); opacity: 1;">
+										<div class="row">
+											<p>instructions</p>
+										</div>
+									</div>
+								</div>
+							</div><!-- end jumbotron -->
+							
+							<div class="row">
+								<div class="col-md-12">
+									<div class="" style="margin-right: 20px">
+									  <h4 class="page-header">Details for... <br/>
+									    <b>{{thread.name}}</b>
+									  </h4>
+									
+									  <div class="page-header">
+									    {{thread.meeting_purpose}} <br/>
+									  </div>
+									
+									  <div>
+									    <b>Average Value : </b>{{avgValue}}
+									    <span style="float: right"> <b>Average Progress : </b>{{avgProgress}}</span>
+									  </div>
+									  <br/>
+									
+									  <div style="float: right">
+									    <b>Last Ranking</b> <br/>
+									    Value : {{lastValue.rank_value}}<br/>
+									    Progress : {{lastValue.rank_progress}}
+									  </div>
+									
+									  <div class="">
+									    <highchart id="chart1" config="chartConfig" ></highchart>
+									  </div>
+									
+									  <a href="">Invite Participants</a>
+									  <a style="float: right" class="btn btn-primary" href="/more_details/{{thread_id}}">More Details</a>
+									</div>
+
+								</div>
+							</div>
+						</div>
+			      	</div>
+			  	</div><!-- END container-fluid -->
+            </div><!-- END full-height full-width -->
+	    </div><!-- end content -->
+	</div><!-- END PAGE CONTENT -->
+</div><!-- end page container -->

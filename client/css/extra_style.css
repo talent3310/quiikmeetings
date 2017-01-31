@@ -1,0 +1,565 @@
+.container-fluid .jumbotron {
+	border-radius:0;
+	margin:0 -30px;
+}
+.secondary-sidebar .title {
+	text-align:center;
+	padding:8px;
+	text-transform:uppercase;
+	/*font-family:"Montserrat";*/
+}
+.secondary-sidebar .meeting-info ul.activity li {
+	width:50%;
+	text-align:center;
+}
+.thread-edit .secondary-sidebar .meeting-info ul.activity li {
+	width:100%;
+	text-align:center;
+}
+.secondary-sidebar .meeting-info ul.activity li:first-child {
+	border-right:1px solid #e5e5e5;
+}
+.nav-tabs-linetriangle {
+	background:#f0f0f0;
+}
+.rotated { 
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.vcenter {
+    position: absolute !important;
+    top: 40%;
+    transform: translateY(-50%);
+    color:#000;
+}
+.sidebar-header {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 8px;
+    position: relative;
+}
+.sidebar-header a.reload {
+	position:absolute;
+	left:28px;
+	top:16px;
+}
+.sidebar-header a.new {
+	position:absolute;
+	right:28px;
+	top:16px;
+}
+.avgNum {
+	color:#fff;
+	font-size:36px;
+	font-weight:800;
+	display:block;
+}
+.changeNum {
+	color:#fff;
+	display:block;
+	font-style:italic;
+}
+.meeting-info .panel .fa {
+	color:#fff;
+}
+.page-sidebar .sidebar-menu .menu-items li > a.icon-thumbnail {
+    color: #ffffff;
+    margin: 0 10px 0 0;
+    padding: 0;
+    width: 50px;
+}
+.page-sidebar .sidebar-menu .menu-items li > a.icon-thumbnail > i {
+	font-size:24px;
+	vertical-align:middle;
+}
+.daterangePicker {
+    position: relative;
+    display:inline;
+}
+.login-container img {
+	width:200px;
+}
+h1 {
+    display: inline-block;
+}
+a.reload {
+    font-size: 14px; cursor: pointer;  margin-left: 12px;
+}
+a.reload i{
+    color: #666;
+}
+/* NAVBOAR */
+.h2, h2 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-top:0;
+}
+.header-med {
+    font-size: 16px; font-weight: bold; border-bottom: 2px solid #f5f5f5; padding: 0 0 12px 0;
+}
+.lead {
+    font-size: 18px;
+}
+.navbar {
+    border-bottom:1px solid #e5e5e5;
+    background:rgba(255,255,255,0.9);
+}
+.navbar-brand > img {
+    display: inline;
+}
+.navbar-nav > li > a {
+    border-left: 1px solid #e5e5e5;
+}
+.navbar-nav li.active a {
+    background:#dff1ff;
+}
+.z-depth-0 {
+    box-shadow: none !important
+}
+.z-depth-1 {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
+}
+.z-depth-1-half {
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)
+}
+.z-depth-2 {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3)
+}
+.z-depth-3 {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3)
+}
+.z-depth-4 {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3)
+}
+.z-depth-5 {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3)
+}
+/* BREADCRUMBS
+.breadcrumb {
+    margin: 20px 0;
+    border-radius: 0;
+    background:none;
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding: 15px 0;
+    text-align:center;
+    font-size:16px;
+}
+.breadcrumb ol {
+    list-style: outside none none; margin: 0; padding: 0;
+}
+.breadcrumb ol li {
+    display:inline;
+}
+.breadcrumb ol > li + li::before {
+    color: #999;
+    content: "/ ";
+    padding: 0 3px 0 5px;
+}
+.breadcrumb .active span {
+    font-weight:bold;
+    font-size:125%;
+}
+.well {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border-color: #e5e5e5;
+}
+.btn-success,
+.btn-primary,
+.btn-default {
+    background-image: none;
+}
+.btn-danger, .btn-default, .btn-info, .btn-primary, .btn-success, .btn-warning {
+    box-shadow: none;
+    text-shadow: none;
+}
+.form-control {
+    border-radius: 2px;
+    border:1px solid #e5e5e5;
+    box-shadow: none
+    color: #555;
+    display: block;
+    font-size: 18px;
+    height: 48px;
+    line-height: 2;
+    padding: 12px;
+    font-weight:200;
+    letter-spacing:1px;
+}
+.page-header {
+    border-bottom: none;
+    margin: 40px 0 10px;
+}
+.home-step {
+    border:none;
+    border-top: 2px dashed #e5e5e5;
+    margin: 30px 0;
+    padding: 30px 0;
+}
+*/
+/* SELECT CALENDAR */
+.calendar-helper-container {
+    border:none;
+    padding:0;
+}
+/* LOGIN */
+.login-box {
+    position:relative;
+}
+.login-box .box-inside {
+    border-top:2px dashed #e5e5e5;
+    padding: 42px;
+}
+/*THREADS*/
+.thread-count  {
+    font-size:18px;
+    display:inline-block;
+    background:#f5f5f5;
+    border-radius:3px;
+    padding:8px;
+    margin: 0 auto 12px auto;
+}
+.thread-count p {
+    display: inline-block;
+}
+.thread-count  div, .thread-count  h2 {
+    display: inline-block; margin-right: 18px;
+}
+.thread-count  h2 {
+    font-size: 18px; margin-left: 12px; font-weight: bold;
+}
+.thread-count .rcorner {
+    font-weight:bold;
+    font-size:24px;
+}
+.thread-count h3 {
+    font-size: 18px;
+    margin: 0 10px 10px 0;
+    padding: 8px;
+    font-weight:400;
+}
+.listgroup {
+    border: 2px solid #e5e5e5;
+    border-radius: 3px;
+    margin-top: 15px;
+    /*padding: 0 15px;*/
+}
+.list-group-item {
+    border:none;
+    background:none;
+    border-bottom: 1px solid #ddd;
+    display: block;
+    margin-bottom: 0;
+    padding: 10px 15px;
+}
+.list-group-item span {
+    display:block;
+}
+.list-group-item .event-time {
+}
+/* THREAD LIST */
+.thread-wrapper {
+	border-radius:3px;
+    border: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+.thread-wrapper .thread-header {
+	background:#f9f9f9;
+	padding:10px 10px 10px 15px;
+	border-radius: 3px 3px 0 0;
+}
+.thread-wrapper .thread-body {
+    padding: 0px;
+}
+.thread-wrapper .thread-meeting {
+	padding:15px;
+	margin:0;
+}
+.collapse .thread-meeting:nth-of-type(odd) {
+    background: #f9f9f9;
+}
+.thread-wrapper .thread-header .thread-title {
+    font-size: 20px;
+    font-weight: 400;
+}
+.next-meeting {
+	border:none !important;
+}
+.thread-wrapper .thread-header .thread-actions {
+    margin-top: 9px;
+}
+.btn-list {
+    margin-right: 10px;
+    margin-top: -40px;
+}
+.collapse .thread-meeting:first-child {
+	border-top:2px dashed #e5e5e5;
+}
+.collapse .thread-meeting:last-child {
+	padding-bottom:42px !important;
+}
+.cal-duration {
+    color: #aaa;
+    font-size: 12px;
+    margin-left: 4px;
+}
+.thread-body .event-details {
+	padding-left:8px;
+}
+.thread-body .glyphicon {
+	color:#777;
+}
+/*SELECT EVENTS*/
+.event-wrapper {
+    padding:0;
+}
+.selector-wrapper {
+    display:block;
+    float:left;
+}
+.thread-edit .cal-event {
+    border: none;
+    border-bottom: 2px dashed #e5e5e5;
+    margin-bottom: 0;
+    min-height: 100px;
+    padding:18px 9px;
+}
+.thread-edit .cal-event.selectable:hover {
+    background:#f5f5f5;
+}
+.thread-edit .cal-event .cal-summary {
+    display:block;
+}
+.thread-edit .cal-event .select-calendar {
+    margin-left: 0;
+    margin-top: 8px;
+}
+.thread-edit .cal-event .cal-header {
+    border-bottom: none;
+    padding: 0 0 0 30px;
+}
+.thread-edit .cal-event .cal-timing {
+    display: inline-block;
+    padding-left: 40px;
+    margin-left:0;
+    margin-top: 5px;
+}
+.thread-edit .cal-event .cal-participants {
+    color: #666;
+    margin-bottom: 0;
+    margin-left:0;
+    padding: 0 0 0 40px;
+}
+.btn-remove {
+    float: left;
+    margin-left: -40px;
+    margin-top: 2px;
+}
+.thread-results {
+	margin-top: 30px;
+}
+/*CHARTS*/
+.charts .inner {
+    margin-bottom:10px;
+    margin-left:-1px;
+}
+.highcharts-title {display:none;}
+
+/* INSIGHTS */
+.insights {
+    margin:5px;
+    padding:5px;
+    display:block;
+}
+.idealist .ng-scope:nth-of-type(odd) {
+    background: #f5f5f5;
+}
+
+/* Showing past meetings */
+.event-completed {
+    background-image: url("checkmark.png");
+    background-position: 97% 50%;
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+    position: relative;
+}
+
+
+.header {
+    background: #ccc; height: 50px; margin-bottom: 24px;
+}
+
+
+h1{
+    margin:0 0 24px 0; padding:0; font-size: 24px;
+}
+
+.thread-item {
+    background: #ffffff none repeat scroll 0 0;
+    border-radius: 5px;
+    margin-bottom: 24px;
+    padding: 12px;
+}
+.thread-item button {
+    color: #337ab7; border: none; padding: 0; margin: 0; background: none; 
+}
+.thread-item button span {
+    border: 1px solid #f2f2f2; padding: 6px; margin-right: 6px;
+}
+.thread-title {
+    width: 33%; float: left; margin-right: 5%;
+}
+.thread-average {
+    font-weight: bold; font-size: 16px; width: 61%; float: left;
+}
+.thread-average h2 {
+    font-size: 14px; margin: 0; padding: 0; display: inline-block; color: #aaa; font-weight: normal; margin-right: 6px;
+}
+.average-good {
+    color: #3c763d;
+}
+.average-bad {
+    color: #a94442;
+}
+.thread-average div {
+    float: left; width: 45%; text-align: right;  box-sizing: border-box; padding-right: 12px; border-right: 1px solid #ccc;
+}
+.thread-average div + div {
+    text-align: left; width: 55%; border: none; padding: 0 0 0 12px;
+}
+.meeting-info {
+     float: left; width: 100%;
+}
+.thread-item .meeting-info {
+	margin-top:0;
+	border-top:1px solid #e5e5e5;
+	padding-top:8px;
+}
+.meeting-info h2 {
+    font-size: 14px; color: #666; padding: 0; margin: 0; display: inline-block; margin-right: 8px; font-weight: normal;
+}
+.meeting-info h3 {
+    font-size: 14px; font-weight: bold; margin: 0; padding:0;
+}
+.meeting-info  .fa {
+    color: #666;
+}
+.meeting-info .close-meeting .fa {
+    color: #a94442;
+}
+.meeting-info ol{
+    padding: 0; margin: 0; display: inline-block;  border-bottom: none;
+}
+.meeting-info > ol.activity {
+    background: #f8f8f8; 
+    -webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+.meeting-info > ol.activity li a {
+    border-right: 1px solid #e2e2e2; padding: 8px 14px; display: inline-block;
+}
+.meeting-info > ol li a {
+    border-right: 1px solid #e2e2e2; padding: 0 14px; display: inline-block;
+}
+.meeting-info > ol li:last-child a{
+    border: none; 
+}
+.meeting-info > ol li a.on {
+    font-weight: bold;
+}
+.meeting-info li{
+    padding: 0; margin:  0; display: inline-block; 
+}
+.meeting-info .thread-meetings {
+}
+.meeting-date span {
+    color: #aaa; margin-left: 6px; display: inline-block; font-size: 12px;
+}
+.meeting-info.details {
+    float: none; margin-bottom: 0; background: none; padding: 0;
+}
+.meeting-info.details .thread-meetings {
+    padding: 0; margin: 0;
+}
+.meeting-info.next-meeting {
+    float: none; margin: 0 0 12px 0; background: none; padding: 0;
+}
+.meeting-info.next-meeting ol {
+    background: none;
+}
+.meeting-info.next-meeting .thread-meetings {
+    margin: 0; padding: 0;
+}
+.meeting-info.next-meeting ol li {
+    padding: 0 0 12px 0; margin: 0;
+}
+.meeting-warning {
+    border-bottom: 2px dashed #e5e5e5; margin-bottom: 12px; padding: 6px 0 18px 0;
+}
+.meeting-warning i {
+ float: left;   margin-right: 12px; color: #e4c71f; 
+}
+.thread-meetings {
+    width: 100%; clear: both; position: relative; padding: 10px;
+}
+.thread-meetings ol {
+    width: 100%; padding: 0; margin: 0; 
+}
+.thread-meetings ol li {
+    display: block; width: 100%; clear: both; border-bottom: 2px dashed #e5e5e5; padding: 12px 0 12px 0; list-style: none;
+}
+.sidepanel .thread-meetings ol li:first-child,
+.thread-meetings ol li:last-child {
+	border-bottom:none;
+}
+.thread-meetings .close-meeting {
+    position: absolute; top: 0; right: 0;
+}
+.single-meeting a{
+    color: #337ab7;
+}
+.single-meeting .badge {
+    border-radius: 0; margin-left: 12px; font-weight: normal; text-transform: uppercase;
+}
+.single-meeting div {
+    margin-bottom: 3px;
+}
+.activity .thread-title {
+    display: block; width: 100%; color: #aaa;
+}
+.activity .meeting-info {
+    background: none; margin-top: 0; padding: 0; border: none; 
+}
+.activity .meeting-info .thread-meetings {
+    display: block; border: 2px solid #f8f8f8;  border-bottom: none;
+}
+.activity .meeting-info .thread-meetings ol{
+    padding: 12px;    
+}
+.filter-date {
+	top: 51px; border: none;
+}
+.comment-list div {
+    padding: 8px 0 8px 0; border-bottom: 2px dashed #e5e5e5;
+}
+.comment-list .collapse {
+    padding: 0; border: none;
+}
+.activity .meeting-manage span {
+    margin-right: 8px; color: #666; padding-right: 8px; border-right: 1px solid #ccc;
+}
+.activity .meeting-manage span.num-voted {
+    padding-right: 0; border: none;
+}
+.loadmore a {
+    display:block; background: #f8f8f8; border: none;  padding: 12px; text-align: center; font-size: 16px; color: #666;
+}
+.loadmore a:hover {
+    background: #ededed; text-decoration: none;
+}

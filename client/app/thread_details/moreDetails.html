@@ -1,0 +1,255 @@
+<div ng-include=" 'tpl/blocks/sidebar.html'"></div>
+<div class="page-container">
+	<div class="page-content-wrapper">
+        <!-- START PAGE CONTENT -->
+        <div class="content">
+            <div class="full-height full-width" ui-view>
+            	
+            	<nav class="secondary-sidebar no-padding ng-scope">
+					<div class="sidebar-header">
+						<a ng-click="reloadData()" class="reload"><i class="fa fa-refresh"></i></a>
+				        <a class="new" href="/threads/edit/{{ thread_id }}"><i class="fa fa-edit"></i></a>
+						<div class="title">Ranking</div>
+					</div>
+					
+					<div class="meeting-info">
+
+						<div class="thread-meetings">
+							
+							<div ng-class="valueChangeBg" class="widget-8 panel no-border widget-loader-bar text-center ng-scope" pg-portlet="" progress="bar" on-refresh="refreshTest('.widget-8')">
+		                        <div class="container-xs-height full-height">
+		                            <div class="row-xs-height">
+		                                <div class="col-xs-height col-top">
+		                                    <div class="panel-heading top-left top-right">
+		                                        <div class="panel-title text-black hint-text">
+		                                            <span class="font-montserrat fs-11 all-caps">Avg. Value</span>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="row-xs-height ">
+		                                <div class="col-xs-height col-top relative">
+		                                    <div class="row">
+		                                        <div class="col-sm-12">
+	                                                <span class="avgNum">{{avgValue|number:1}} <i ng-class="valueChangeIcon" ng-show="valueChange"></i></span>
+	                                                <span class="changeNum">
+	                                                	 <span ng-class="valueChangeClass" >{{ valueChange|number:1 }} from last meeting</span>
+                                                	</span>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                        </div>
+		                                    </div>
+		                                    
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    
+		                    <div ng-class="progressChangeBg" class="widget-8 panel no-border widget-loader-bar text-center ng-scope" pg-portlet="" progress="bar" on-refresh="refreshTest('.widget-8')">
+		                        <div class="container-xs-height full-height">
+		                            <div class="row-xs-height">
+		                                <div class="col-xs-height col-top">
+		                                    <div class="panel-heading top-left top-right">
+		                                        <div class="panel-title text-black hint-text">
+		                                            <span class="font-montserrat fs-11 all-caps">Avg. Progress</span>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="row-xs-height ">
+		                                <div class="col-xs-height col-top relative">
+		                                    <div class="row">
+		                                        <div class="col-sm-12">
+	                                                <span class="avgNum">{{avgProgress|number:1}} <i ng-class="progressChangeIcon" ng-show="progressChange"></i></span>
+	                                                <span class="changeNum">
+	                                                	<span ng-class="progressChangeClass" >{{ progressChange|number:1 }} from last meeting</span>
+                                                	</span>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                        </div>
+		                                    </div>
+		                                    
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    
+		                    <div ng-class="progressChangeBg" class="widget-8 panel no-border widget-loader-bar text-center ng-scope" pg-portlet="" progress="bar" on-refresh="refreshTest('.widget-8')">
+		                        <div class="container-xs-height full-height">
+		                            <div class="row-xs-height">
+		                                <div class="col-xs-height col-top">
+		                                    <div class="panel-heading top-left top-right">
+		                                        <div class="panel-title text-black hint-text">
+		                                            <span class="font-montserrat fs-11 all-caps">Avg. Engagement</span>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="row-xs-height ">
+		                                <div class="col-xs-height col-top relative">
+		                                    <div class="row">
+		                                        <div class="col-sm-12">
+	                                                <span class="avgNum">{{avgEng|number:1}} <i ng-class="engChangeIcon" ng-show="engChange"></i></span>
+	                                                <span class="changeNum">
+	                                                	<span ng-class="engChangeClass" >{{ engChange|number:1 }} from last meeting</span>
+                                                	</span>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                        </div>
+		                                    </div>
+		                                    
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    
+		                    
+		                    
+							
+									
+						</div>
+						
+						<ul class="nav nav-tabs nav-tabs-linetriangle activity text-center" pg-tab-dropdownfx="">
+							<li class="active" style="width:100%">
+								<a href="##" data-toggle="tab">Thread Details</a>
+							</li>
+						</ul>
+						
+						<div class="thread-meetings">
+							
+							<div pg-form-group="" class="form-group form-group-default m-t-20">
+								<label>Summary</label>
+								{{ thread.meeting_purpose }}
+							</div>
+							
+							<div pg-form-group="" class="form-group form-group-default">
+								<label>Purpose</label>
+								{{ thread.reason }}
+							</div>
+							
+							<a href="/threads/edit/{{ thread_id }}" class="btn btn-primary btn-sm btn-compose">Edit</a>
+
+							
+						</div>
+					</div>
+					
+					
+				</nav><!-- END secondary-sidebar -->
+				
+            	<div class="container-fluid container-fixed-lg inner-content full-height ng-scope">
+	            	<div class="row">
+	            		<div class="col-sm-12">
+	            			
+	            			<div class="jumbotron padding-10 text-center ng-scope" data-pages="parallax">
+							    <div class="container-fluid container-fixed-lg">
+							        <div class="inner" style="transform: translateY(0px); opacity: 1;">
+							            <div class="row">
+							                <div class="col-sm-12">
+							                    <div class="row">
+											        <div class="col-md-12">
+											        	<h1>{{ thread.name }}</h1>
+											        	<span class="btn btn-tag pull-right btn-tag-light btn-tag-rounded m-r-20">{{ thread.meeting_type }}</span>
+											        </div>  
+											    </div>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+	            			
+	            			<div class="jumbotron padding-20 ng-scope p-t-50" data-pages="parallax" style="background:#fff">
+								<div class="container-fluid container-fixed-lg">
+									<div class="inner" style="transform: translateY(0px); opacity: 1;">
+										<highchart id="chart1" config="chartConfigValue"></highchart>
+									</div>
+								</div>
+							</div><!-- end jumbotron -->
+							
+							<div class="panel m-t-20 z-depth-2">
+				                <ul class="nav nav-tabs nav-tabs-simple" role="tablist" ui-jq="tabCollapse">
+				                    <li class="active"><a href="#tab2hellowWorld" data-toggle="tab" pg-tab role="tab">Insights</a>
+				                    </li>
+				                    <li><a href="#tab2FollowUs" data-toggle="tab" pg-tab role="tab">Meeting List</a>
+				                    </li>
+				                    <li><a href="#tab2Inspire" data-toggle="tab" pg-tab role="tab">Comments</a>
+				                    </li>
+				                </ul>
+				                <div class="tab-content">
+				                    <div class="tab-pane active" id="tab2hellowWorld">
+				                        <div class="row column-seperation">
+				                            <div class="col-sm-12">
+				                                <div ng-show="meetingBad" class="meeting-warning">
+									    		   <i class="fa fa-warning fa-2x"></i> 
+									                <span ng-show="valueChange < 0">{{ warning.value }}</span>
+									                <span ng-show="progressChange < 0">{{ warning.progress }}</span>
+									                <span ng-show="engChange < 0">{{ warning.engagement }}</span>
+									    		</div>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="tab-pane " id="tab2FollowUs">
+				                        <div class="row">
+				                            <div class="col-md-12">
+				                                <div class="meeting-info next-meeting" ng-hide="thread.noNextEvent">
+									                <div class="thread-meetings">
+									                	<ol>
+									                		<li>
+									                			<div class="single-meeting">
+										                            <div class="meeting-title"><strong>Next Meeting:</strong> <a href="/event_details/{{thread_id}}/{{nextEvent.id}}">{{nextEvent.summary}}</a></div>
+										                            <div class="meeting-date"><i class="fa fa-calendar"></i> {{(nextEvent.start | date:'EEEE, MMMM d')}}  <span>{{nextEvent.start | date:'hh:mma'}} - {{ (nextEvent.end | date:'hh:mma')}}</span></div>
+										                            <div class="meeting-manage"><i class="fa fa-user"></i> <a class="" href="/manage_participants/{{thread_id}}/{{nextEvent.id}}">Manage Participants</a></div>
+										                        </div>
+									                		</li>
+									                	</ol>
+									                </div>
+									            </div>
+									            <div ng-show="thread.noNextEvent">
+									                <p>No upcoming meetings. <a href="/threads/edit/{{ thread_id }}">Add More</a></p>
+									            </div>
+									
+									            <div>
+									                <a  role="button" data-toggle="collapse" href="#upcoming" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-chevron-down"></i> Show all meetings</a>
+									                <div class="collapse meeting-info details" id="upcoming">
+									                    <a href="/threads/edit/{{ thread_id }}">Add More</a>
+									                    <div  class="thread-meetings">
+									        	        	<ol>
+									        	        		<li ng-repeat= 'event in events|orderBy:convertToDate'>
+											        	            <div class="single-meeting">
+											                            <div class="meeting-title"><a href="/event_details/{{ thread.id }}/{{ event.id }}">{{ event.summary || "No Name" }}</a> <span class="badge" ng-show="isEventCompleted(event)">Completed</span> </div>
+											                            <div class="meeting-date"><i class="fa fa-calendar"></i> {{ event.start | friendlyDate }} <span>{{ event | formatDuration }}</span></div>
+											                            <div class="meeting-manage"><i class="fa fa-user"></i> <a href="/manage_participants/{{ thread.id }}/{{ event.id }}">View Participants</a> </div>
+											                        </div>
+									        	        		</li>
+									        	        	</ol>
+									        	        </div>
+									                </div>
+									            </div>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="tab-pane" id="tab2Inspire">
+				                        <div class="row">
+				                            <div class="col-md-12">
+				                                <div class="comment-list">
+							                    <div ng-repeat= 'review in reviews | limitTo:3'>
+							                      {{review.comment}}
+							                    </div>
+							                    <div class="collapse" id="comments">
+							                        <div ng-show="reviews.length>3"  ng-repeat= 'review in reviews.slice(3,reviews.length)'>
+							                          {{review.comment}}
+								                      </div>
+								                	</div>
+								                </div>
+								                <a ng-show="reviews.length > 3" role="button" data-toggle="collapse" href="#comments" aria-expanded="false" aria-controls="collapseExample" style="display: block; padding-top: 12px;"> <i class="fa fa-chevron-down"></i> Show all comments</a>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+						</div>
+			      	</div>
+			  	</div><!-- END container-fluid -->
+            </div><!-- END full-height full-width -->
+	    </div><!-- end content -->
+	</div><!-- END PAGE CONTENT -->
+</div><!-- end page container -->

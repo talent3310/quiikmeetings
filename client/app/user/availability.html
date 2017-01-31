@@ -1,0 +1,115 @@
+<div class="row">
+  <h2 class="page-header">Add User Availability</h2>
+
+  <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <p>Instructions for each page will go here that Marco will write</p>
+  </div>
+
+  <form id="add-user-availability-form" class="form-horizontal" name="form" ng-submit="saveAvailability(form)">
+    <div class="col-lg-5">
+      <div class="form-group" ng-show='isAdmin()'>
+        <label for="user_id">User Name:</label>
+        <select class="form-control" ng-change="getUserAvailability()" id="user_id" ng-model="user_id"
+                required="required"
+                ng-options="userData._id as userData.firstname + ' ' + userData.lastname for userData in users">
+          <option value="">Select User</option>
+        </select>
+
+        <div class="help-block with-errors"></div>
+      </div>
+      <div class="form-group">
+        <label for="daterange">Select Date:</label>
+
+        <div id="daterange" ng-model="dateRange"
+             style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" date-Range-Picker
+             ng-change="getUserAvailability()" required="required">
+          <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+          <span></span> <b class="caret"></b>
+        </div>
+        <div class="help-block with-errors"></div>
+      </div>
+
+      <div class="form-group">
+        <label>Duration:</label>
+
+        <div>
+          <div class="btn-group" data-toggle="buttons" class="form-control">
+            <label class="btn btn-default active" ng-click="duration=1;setEndTimeOnChange()">
+              <input type="radio" id="duration1" name="duration" value="1" checked="checked"/> 1 hour
+            </label>
+            <label class="btn btn-default" ng-click="duration=1.5;setEndTimeOnChange()">
+              <input type="radio" id="duration1_5" name="duration" value="1.5"/> 1.5 hour
+            </label>
+            <label class="btn btn-default" ng-click="duration=2;setEndTimeOnChange()">
+              <input type="radio" id="duration2" name="duration" value="2"/> 2 hour
+            </label>
+            <label class="btn btn-default" ng-click="duration=2.5;setEndTimeOnChange()">
+              <input type="radio" id="duration2_5" name="duration" value="2.5"/> 2.5 hour
+            </label>
+            <label class="btn btn-default" ng-click="duration=3;setEndTimeOnChange()">
+              <input type="radio" id="duration3" name="duration" value="3"/> 3 hour
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="newStartTime">Start Time:</label>
+        <input time-Picker type="text" id="newStartTime" placeholder="Start Time" ng-model="newStartTime"
+               ng-change="setEndTimeOnChange()" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="newEndTime">End Time:</label>
+        <input time-Picker type="text" id="newEndTime" placeholder="End Time" ng-model="newEndTime" class="form-control"
+               ng-disabled="true">
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-info" id="save" type="submit">Save</button>
+        <button type="button" class="btn btn-warning" id="cancel" ng-click="doTheBack()">Cancel</button>
+      </div>
+
+    </div>
+
+
+    <div class="col-lg-6 col-sm-offset-1">
+      <div class="form-group">
+        <div id="time-slots" ng-show="userAvailabilities.length>0">
+          <div>
+            <label>Free Time(s):</label>
+
+            <div ng-repeat="userAvailability in userAvailabilities|orderBy:'date'">
+              <label>{{userAvailability.date}}</label>
+
+              <div class="form-inline" ng-repeat="item in userAvailability.free_times">
+                <div class="input-group">
+                  <input type="text" class="form-control times" name="start_time{{$index}}" ng-model="item.start_time"
+                         placeholder="Start Time" required="required" time-Picker>
+                </div>
+                <div class="input-group">
+                  <input type="text" class="form-control times" name="end_time{{$index}}" ng-model="item.end_time"
+                         placeholder="End Time" required="required" time-Picker>
+                </div>
+
+                <button type="button" class="btn btn-default " aria-label="Left Align"
+                        ng-click="removeAvailability(userAvailability,$index)">
+                  <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+
+                </button>
+                <div class="help-block with-errors"></div>
+              </div>
+
+              <button type="button" class="btn btn-default " ng-click="addAvailability(userAvailability.free_times)">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

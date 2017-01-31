@@ -1,0 +1,352 @@
+@import url("../bower_components/bootstrap/dist/css/bootstrap.min.css");
+@import url("../bower_components/bootstrap/dist/css/bootstrap-theme.min.css");
+@import url("../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css");
+@import url("../bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css");
+@import url("../bower_components/fullcalendar/dist/fullcalendar.min.css");
+@import url("../bower_components/ngtoast/dist/ngToast.css");
+
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;less
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+/*
+ * Home Page
+ */
+
+.home-step {
+  border: 1px solid #666;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+/**
+ * Calendar Page
+ */
+
+.calendar-helper-container {
+  padding: 15px;
+  border: 1px solid #333;
+
+  .calendar-helper-header {
+    font-size: 20px;
+    margin: 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #bbb;
+    margin-bottom: 17px;
+  }
+
+  .cal-well {
+    background-color: #eee;
+    padding: 10px;
+    margin-bottom: 11px;
+  }
+
+  .next-step {
+    margin-top: 15px;
+    margin-bottom: 0px;
+
+    p {
+      margin-bottom: 8px;
+    }
+
+    &.with-line {
+      border-bottom: #ccc 1px solid;
+      padding-bottom: 7px;
+    }
+  }
+}
+
+/*
+   Thread Edit
+ */
+
+.thread-edit {
+  .thread-results {
+    margin-top: 15px;
+  }
+  .date-range {
+    background: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 225px;
+    margin-left: 15px;
+  }
+
+  .cal-event {
+    border: 1px solid #eee;
+    padding: 10px;
+    min-height: 100px;
+
+    &.selectable {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #eee;
+      }
+    }
+
+
+    &.selected {
+      background-color: #F6F9CB;
+    }
+
+    .cal-header {
+      padding-bottom: 5px;
+      border-bottom: 1px dotted #989898;
+    }
+
+    .cal-summary{
+      display: inline-block;
+      font-size: 18px;
+    }
+
+    .cal-timing {
+      display: inline-block;
+      margin-left: 10px;
+
+      .cal-date {
+        color: #737373;
+        font-size: 13px;
+      }
+
+      .cal-duration {
+        color: #aaa;
+        font-size: 12px;
+        margin-left: 4px;
+      }
+    }
+
+    .cal-participants {
+      margin-top: 5px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .select-calendar {
+      transform: scale (2);
+      margin-left: 35px;
+      margin-top: 35px;
+    }
+
+    .cal-ago {
+      font-size: 12px;
+      margin-top: 5px;
+      color: #aaa;
+    }
+  }
+}
+
+// 
+// Thread List
+// 
+
+.thread-wrapper {
+  border: 1px solid #ddd;
+  margin-top: 10px;
+
+  .thread-header {
+    background-color: #ebebeb;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+
+
+    .thread-title {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .thread-averages {
+      margin-top: 5px;
+      font-weight: bold;
+
+      .second {
+        margin-left: 20px;
+      }
+    }
+
+    .avg-label {
+      color: #666;
+    }
+
+    .thread-actions {
+      margin-top: 13px;
+    }
+
+    .header-items {
+      display: inline-block;
+    }
+  }
+
+  .thread-body {
+    padding: 15px;
+  }
+
+  .thread-meeting {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0px !important;
+      padding-bottom: 5px !important;
+      border-bottom: none !important;
+    }
+  }
+
+  .event-summary {
+    margin-bottom: 8px;
+
+    .event-participants {
+      color: #888;
+      margin-left: 15px;
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

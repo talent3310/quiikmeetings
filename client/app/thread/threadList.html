@@ -1,0 +1,172 @@
+<div ng-include=" 'tpl/blocks/sidebar.html'"></div>
+    
+	<div class="page-container">
+		
+		<div class="page-content-wrapper">
+        <!-- START PAGE CONTENT -->
+        <div class="content">
+            <div class="full-height full-width" ui-view>
+            	
+				<nav class="secondary-sidebar no-padding ng-scope">
+					<div class="sidebar-header">
+						<a ng-click="reloadData()" class="reload"><i class="fa fa-refresh"></i></a>
+				        <a class="new" href="/threads/add/cronofy"><i class="fa fa-plus"></i></a>
+						<div class="title">My Meetings</div>
+					</div>
+					
+					<div class="meeting-info">
+						<ul class="nav nav-tabs nav-tabs-linetriangle activity" pg-tab-dropdownfx>
+							<li class="active"><a href="##" data-toggle="tab" class="meeting-upcoming" ng-class="sidebarClass('upcoming')" ng-click="setSidebar ('upcoming')">Upcoming</a></li>
+							<li><a href="##" data-toggle="tab" class="meeting-complete" ng-click="setSidebar ('completed')" ng-class="sidebarClass('completed')">Completed</a></li>
+							<!--<li><a href="##" data-toggle="tab" class="meeting-all" ng-class="sidebarClass('all')" ng-click="setSidebar('all')">All</a></li>-->
+						</ul>
+						<div  class="thread-meetings">
+							<ol>
+								<li ng-show="sidebarEvents.length == 0">There are no {{sidebar }} meetings scheduled to be measured. <a href="/threads/add/google">Find meetings</a> you want to measure.</li>
+								<li ng-repeat="event in sidebarEvents|orderBy:convertToDate|limitTo:sidebarLimit">
+									<div class="single-meeting">
+									<!-- <div class="thread-title">Mayo Clinic Re-brand</div> -->
+									<div class="meeting-title">
+										<a href="/event_details/{{ event.thread.id }}/{{ event.id }}">{{ event.summary || "No Name" }}</a> 
+										<span class="badge" ng-show="isEventCompleted(event)">Completed</span>
+									</div>
+									<div class="meeting-date">
+										<i class="fa fa-calendar"></i> 
+										{{ event.start | friendlyDate }} <span>{{ event | formatDuration }}</span></div>
+									</div> 
+								</li>
+							</ol>
+						
+						</div>
+						<div class="loadmore"><a href="" ng-hide="sidebarEvents.length < sidebarMax || sidebarLimit > sidebarMax" ng-click="expandSidebar ()">Show More</a></div>
+					</div>
+				</nav>
+
+            	<div class="container-fluid container-fixed-lg inner-content full-height ng-scope">
+            		
+            	<div class="jumbotron padding-10 ng-scope helpbox" data-pages="parallax">
+				    <div class="container-fluid container-fixed-lg">
+				        <div class="inner" style="transform: translateY(0px); opacity: 1;">
+				            <div class="row">
+				                <div class="col-lg-7 col-md-6 ">
+				                    <!-- START PANEL -->
+				                    <div class="full-height">
+				                        <div class="panel-body text-center">
+				                            <img class="image-responsive-height demo-mw-600" src="assets/img/demo/threads.png" alt="">
+				                        </div>
+				                    </div>
+				                    <!-- END PANEL -->
+				                </div>
+				                <div class="col-lg-5 col-md-6 ">
+				                    <!-- START PANEL -->
+				                    <div class="panel panel-transparent">
+				                        <div class="panel-body">
+				                            <h3><i class="fa fa-info-circle"></i> Meeting Threads</h3>
+				                            <p>Threads are a series of meetings connected to show you the changes in value and progress over time. Any past or upcoming meetings in your calendar can be threaded, and meetings can be in multiple threads.</p>
+				                        	<br />
+				                        	<a id="hideHelp" href="#"><i class="fa fa-check-circle"></i> Got it!</a>
+				                        </div>
+				                    </div>
+				                    <!-- END PANEL -->
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>	
+            	
+        		<div class="jumbotron padding-10 text-center ng-scope" data-pages="parallax">
+				    <div class="container-fluid container-fixed-lg">
+				        <div class="inner" style="transform: translateY(0px); opacity: 1;">
+				            <div class="row">
+				                <div class="col-sm-12">
+				                    <div class="row">
+								        <div class="col-md-12"><h1>Meeting Threads</h1>
+								          <a href="/threads/add/cronofy" class="btn btn-primary btn-sm btn-compose pull-right">New Thread</a>
+								        </div>  
+								    </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				
+				<div class="row m-t-20">
+	  
+			      <div class="col-md-12">
+			      	
+			            <!-- Thread starts here -->
+			        <div class="row thread-item" ng-repeat="thread in eventThreads">
+			          <div class="thread-title">
+			            <div class="dropdown">
+			            <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			              <!-- <span class="caret"></span> -->
+			              <span class="fa fa-reorder"></span>
+			            </button>
+			            <a href="/thread_details/{{ thread.id }}">{{ thread.name || 'No Name' }}</a>
+			            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			              <li><a href="/thread_details/{{ thread.id }}">View</a></li>
+			              <li><a href="/threads/edit/{{ thread.id }}">Edit</a></li>
+			              <li><a href="#" ng-click="archiveThread (thread)">Archive</a></li>
+			            </ul>
+			          </div>
+			          </div>
+			          <div class="thread-average">
+			            <div><h2>Value</h2> {{ thread.avgValue || 0 }} <span ng-class="thread.movement.valueChangeClass" ng-show="thread.movement.valueChange"> <span class="fa" ng-class="thread.movement.valueChangeIcon"></span> {{ thread.movement.valueChange|number:2 }}</span></div>
+			            <div><h2>Progress</h2> {{ thread.avgProgress || 0 }} <span ng-class="thread.movement.progressChangeClass" ng-show="thread.movement.progressChange"> <span class="fa" ng-class="thread.movement.progressChangeIcon"></span> {{ thread.movement.progressChange|number:2 }}</span></div>
+			          </div>
+	
+			          <div class="meeting-info">
+			                <ol>
+			                    <li><a href="#" class="meeting-upcoming" ng-class="checkClass('upcoming', thread)" ng-click="showUpcoming (thread)">{{ thread.upcomingCount || 'No' }} Upcoming</a></li>
+			                    <li><a href="#" class="meeting-complete"  ng-class="checkClass('completed', thread)" ng-click="showCompleted(thread)">{{ thread.completedCount }} Completed</a></li>
+			                    <li><a href="#" class="meeting-all" ng-class="checkClass('all', thread)" ng-click="showAll(thread)">View All</a></li>
+			                    <!-- <li><a href="/threads/edit/{{ thread.id }}">Add</a></li> -->
+			                </ol>
+			                <div  class="thread-meetings" ng-show="thread.expanded">
+			                    <a href="#" class="close-meeting" ng-click="closeThread(thread)"><i class="fa fa-close"></i></a>
+			                    <ol>
+			                        <li ng-repeat="event in thread.shownEvents|orderBy:convertToDate">
+			                            <div class="single-meeting">
+			                                <div class="meeting-title"><a href="/event_details/{{ thread.id }}/{{ event.id }}">{{ event.summary || "No Name" }}</a> <span class="badge" ng-show="isEventCompleted(event)">Completed</span> </div>
+			                                <div class="meeting-date"><i class="fa fa-calendar"></i> {{ event.start | friendlyDate }} <span>{{ event | formatDuration }}</span></div>
+			                                <div class="meeting-manage"><i class="fa fa-user"></i> <a href="/manage_participants/{{ thread.id }}/{{ event.id }}">View Participants</a> </div>
+			                           </div> 
+			                        </li>
+			                    </ol>
+			                </div>
+			
+			            </div>
+			        </div>
+			         <!-- Thread ends here -->
+			      </div>
+			      
+			
+			
+			      
+			  </div>
+            </div>
+            
+	    </div>
+	</div>
+	<!-- END PAGE CONTENT -->
+	
+</div>
+<script type="text/javascript">
+
+	$(document).on("click", "#hideHelp", function() {
+	  $(".helpbox").hide();
+	  $.cookie('quiik.thread.help', 'true', { expires: 36500, path: '/' });
+	});
+	
+    // Delayed Modal Display + Cookie On Click
+    $(document).ready(function() {
+
+      $(function () {
+		    if ($.cookie('quiik.thread.help')) {
+		        $('.helpbox').remove()
+		    }
+		});
+    });
+  </script>
+
+

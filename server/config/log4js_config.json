@@ -1,0 +1,12 @@
+{
+	"appenders": [
+		{
+			"category": "email",
+			"type": "file",
+			"filename": "./logs/email.log"
+		}
+	],
+	"levels": {
+		"email": "INFO"
+	}
+}

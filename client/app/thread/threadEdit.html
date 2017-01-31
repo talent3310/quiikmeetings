@@ -1,0 +1,207 @@
+<div ng-include=" 'tpl/blocks/sidebar.html'"></div>
+<div class="page-container">
+	<div class="page-content-wrapper">
+        <!-- START PAGE CONTENT -->
+        <div class="content">
+            <div class="full-height full-width" ui-view>
+				<div ng-switch="mode" class="thread-edit">
+					<div ng-switch-when="2">
+		            	<div class="container-fluid container-fixed-lg inner-content full-height ng-scope">
+			            	<div class="row">
+			            		<div class="col-sm-12">
+				            		<h3>Add Calendar</h3>
+									<p>You don't seem to have a google calendar connected. Why not <a href="#">add one now</a>?<p>
+								</div>
+					      	</div>
+					  	</div><!-- END container-fluid -->
+					</div><!-- end when 2 -->
+					
+					<div ng-switch-when="0">
+						<nav class="secondary-sidebar no-padding ng-scope">
+							<div class="sidebar-header">
+								<div class="title"><a href="/threads/"><i class="fa fa-arrow-left"></i> All threads</a></div>
+							</div>
+							<div class="thread-meetings vcenter">
+								<p class="text-right">Select the meetings you want to add to your thread. Use the date range above to adjust how many meetings we'll load from your calendar.</p>
+								<button class="btn btn-primary btn-lg btn-block" ng-click="addSearchResults ()">Next</button>
+							</div>
+						</nav><!-- END secondary-sidebar -->
+						
+		            	<div class="container-fluid container-fixed-lg inner-content full-height ng-scope">
+			            	<div class="row">
+			            		<div class="col-sm-12">
+			            			<div class="jumbotron padding-10 text-center ng-scope" data-pages="parallax">
+										<div class="container-fluid container-fixed-lg">
+											<div class="inner" style="transform: translateY(0px); opacity: 1;">
+												<div class="row">
+													<h1>Showing meetings from</h1>
+												    <div class="daterangePicker">
+														<div id="daterange"
+															ng-model="searchView.sdr"
+															ng-change="updateDateRange()"
+															style="" date-Range-Picker class="date-range"
+															options="{separator:':'}"
+															required="required">
+															<i class="fa fa-calendar"></i>
+															<span></span> <b class="caret"></b>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- end jumbotron -->
+									
+									<div class="row">
+										<div class="col-md-12">
+											<div class="google-loading text-center" ng-show="threadView.googleLoading" style="padding-top: 80px; padding-bottom: 80px">
+												Loading events from your calendar. Please wait ...
+											</div>
+											<div class="thread-results" ng-show="!threadView.googleLoading">
+												<div ng-repeat="item in searchView.results" class="event-wrapper">
+												    <div class="cal-event selectable" ng-click="selectSearchItem ($index)" ng-class="{'selected':item.selectedFlag}">
+												        <div class="row">
+												            <div class="col-md-12">
+												                <div class="selector-wrapper">
+												                    <input type="checkbox" class="select-calendar" ng-change="selectSearchItem ($index)" ng-model="item.selectedFlag" />
+												                </div>
+												                <div class="cal-header">
+												                    <div class="cal-summary">{{ item.summary }}</div>
+												                    <div class="cal-ago pull-right">{{ item.start | friendlyAgo }} </div>
+												                </div>
+												                <div class="cal-timing">
+												                    <span class="cal-date"><i class="glyphicon glyphicon-calendar"></i> {{ item.start | friendlyDate }}</span>
+												                    <span class="cal-duration">{{ item | formatDuration }}</span>
+												                </div>
+												                <div class="cal-participants">
+												                    <i class="glyphicon glyphicon-user"></i> {{ item | nameList }}
+												                </div>
+												            </div>
+												        </div>
+												    </div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+					      	</div>
+					  	</div><!-- END container-fluid -->
+					</div><!-- end when 0 -->
+					
+					<div ng-switch-when="1">
+						
+						<nav class="secondary-sidebar no-padding ng-scope">
+							<div class="sidebar-header">
+								<div class="title"><a href="#" class="" ng-click="showAddMeeting ()"><i class="fa fa-arrow-left"></i>  Add More Meetings</a></div>
+							</div>
+							
+							<div class="meeting-info">
+							
+								<ul class="nav nav-tabs nav-tabs-linetriangle activity" pg-tab-dropdownfx="">
+									<li class="active"><a href="##" data-toggle="tab">Thread Details</a></li>
+								</ul>
+								
+								<div class="thread-meetings m-t-20">
+								
+									<div pg-form-group="" class="form-group form-group-default required">
+										<label>Title</label>
+										<input class="form-control" id="thread-name" required="" type="text" ng-model="threadView.fields.name" >
+									</div>
+									
+									<div pg-form-group="" class="form-group form-group-default">
+										<label>Summary</label>
+										<input class="form-control" id="thread-summary" ng-model="threadView.fields.meeting_purpose" >
+									</div>
+									
+									<div pg-form-group="" class="form-group form-group-default">
+										<label>Objective</label>
+										<input class="form-control" ng-model="threadView.fields.reason" >
+									</div>
+									
+									<div class="row">
+										<div class="col-sm-12">
+											<h4 style="font-size: 14px; font-weight: bold; margin-bottom: 6px;">Meeting Type</h4>
+										</div>
+										
+										<div class="radio radio-success">
+											<div class="col-sm-12">
+												<input type="radio" ng-model="threadView.fields.meeting_type" name="meeting" value="Executive" id="Executive" checked='checked'>
+												<label for="Executive">Executive</label>
+											</div>
+											
+											<div class="col-sm-12">
+												<input type="radio" ng-model="threadView.fields.meeting_type" name="meeting" value="Marketing" id="Marketing">
+												<label for="Marketing">Marketing</label>
+											</div>
+											
+											<div class="col-sm-12">
+												<input type="radio" ng-model="threadView.fields.meeting_type" name="meeting" value="Sales" id="Sales">
+												<label for="Sales">Sales</label>
+											</div>
+											
+											<div class="col-sm-12">
+												<input type="radio" ng-model="threadView.fields.meeting_type" name="meeting" value="Development" id="Development">
+												<label for="Development">Development</label>
+											</div>
+											
+											<div class="col-sm-12">
+												<input  type="radio" ng-model="threadView.fields.meeting_type" name="meeting" value="Client / Project" id="Client / Project">
+												<label for="Client / Project">Project</label>
+											</div>
+										</div>
+									</div>
+								<br />
+								<button class="btn btn-primary btn-lg btn-block" ng-click="saveThread()">{{ currentThread.id ? "Update Thread" : "Save Thread" }}</button>
+								</div>
+							</div>
+						</nav><!-- END secondary-sidebar -->
+						
+						<div class="container-fluid container-fixed-lg inner-content full-height ng-scope">
+							
+							<div class="jumbotron padding-10 text-center ng-scope" data-pages="parallax">
+								<div class="container-fluid container-fixed-lg">
+									<div class="inner" style="transform: translateY(0px); opacity: 1;">
+										<div class="row">
+											<h1>Meetings in this Thread</h1>
+										</div>
+									</div>
+								</div>
+							</div><!-- end jumbotron -->
+									
+			            	<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" style="margin-top:20px" ng-show="threadView.notification">
+										{{ threadView.notification }} 
+										<a href="/threads/">See all threads</a>
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="row">
+								<div class="col-sm-12">
+									<div ng-repeat="item in threadView.items|orderBy:convertToDate" class="event-wrapper">
+										<div class="cal-event" style="background:#f8f8f8">
+											<button class="btn btn-xs btn-default btn-remove" ng-click="removeItem ($index)" ng-hide="isInPast(item.start)"><i class="glyphicon glyphicon-trash"></i></button>
+											<div class="cal-summary">{{ item.summary }}</div>
+											<div class="cal-timing" style="padding-left:5px">
+											    <span class="cal-date"><i class="glyphicon glyphicon-calendar"></i> {{ item.start | friendlyDate }}</span>
+											    <span class="cal-duration">{{ item | formatDuration }}</span>
+											</div>
+											<div class="cal-ago pull-right">{{ item.start | friendlyAgo }} </div>
+											<div class="cal-participants" style="padding-left:5px">
+											    <i class="glyphicon glyphicon-user"></i> {{ item | nameList }}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					  	</div><!-- END container-fluid -->
+					</div><!-- end when 1 -->
+				</div><!-- end switch mode -->
+            </div><!-- END full-height full-width -->
+	    </div><!-- end content -->
+	</div><!-- END PAGE CONTENT -->
+</div><!-- end page container -->
+
+
+

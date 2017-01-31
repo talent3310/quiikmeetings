@@ -1,0 +1,123 @@
+<div ng-include=" 'tpl/blocks/sidebar.html'"></div>
+<div class="page-container">
+	<div class="page-content-wrapper">
+        <!-- START PAGE CONTENT -->
+        <div class="content">
+            <div class="full-height full-width" ui-view>
+            	
+            	<nav class="secondary-sidebar no-padding ng-scope">
+					<div class="sidebar-header">
+						<a ng-click="reloadData()" class="reload"><i class="fa fa-refresh"></i></a>
+				        <a class="new" href="/threads/edit/{{ thread_id }}"><i class="fa fa-edit"></i></a>
+						<div class="title">Ranking</div>
+					</div>
+					
+					<div class="meeting-info">
+
+						<div class="thread-meetings">
+							
+							<div class="thread-count">
+						            <h2>Average:</h2> 
+						            <div>Value  <span class="rcorner">{{avgValue|number:1}}</span> </div>
+						            <div>Progress <span class="rcorner">{{avgProgress|number:1}}</span> </div>
+						            <div>Participation <span class="rcorner">{{ avgEng|number:1 }}</span></div>
+						        </div>
+
+									
+						</div>
+					</div>
+					
+					
+				</nav><!-- END secondary-sidebar -->
+				
+            	<div class="container-fluid container-fixed-lg inner-content full-height ng-scope">
+	            	<div class="row">
+	            		<div class="col-sm-12">
+	            			<div class="jumbotron padding-10 text-center ng-scope" data-pages="parallax">
+							    <div class="container-fluid container-fixed-lg">
+							        <div class="inner" style="transform: translateY(0px); opacity: 1;">
+							            <div class="row">
+							                <div class="col-sm-12">
+							                    <div class="row">
+											        <div class="col-md-12">
+											        	<h1><a href="/thread_details/{{ thread.id }}">{{ thread.name }}</a> > {{ event.summary }}</h1>
+											        </div>  
+											    </div>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+							
+							<div class="panel m-t-20 z-depth-2 col-md-8 col-md-offset-2 col-sm-12">
+								<b>Average Event Value :  <span class="rcorner">{{eventValueAvg}}</span></b> <br/><br/>
+								<div class="row" style="border: 1px solid #ddd;">
+									<highchart id="chart3" config="chartConfigValue" class="span5"></highchart>
+								</div>
+				            </div>
+				            
+				            <div class="panel m-t-20 z-depth-2 col-md-8 col-md-offset-2 col-sm-12">
+								<b>Average Event Progress : <span class="rcorner">{{eventProgressAvg}}</span></b> <br/><br/>
+							    <div class="row" style="border: 1px solid #ddd;">
+							      <highchart id="chart4" config="chartConfigProgress" class="span5"></highchart>
+							    </div>
+				            </div>
+				            
+							
+	<div class="row">
+    <div class="col-md-5">
+      <h4 style=""><b>Comments</b></br></h4>
+      <div ng-repeat= 'review in reviews | limitTo:3'>
+        <ul>
+          <li ng-show="review.comment"><div>{{review.comment}}</div><br/></li>
+        </ul>
+      </div>
+      <div style="float: right"><a ng-show="!status && reviews.length>3" ng-click="readMore()" href="">Read More</a></div>
+      <div style="float: right"><a ng-show="status" ng-click="showLess()" href="">Show Less</a></div>
+      <div>
+        <h4 style=""><b>Participants</b></br></h4>
+        <p ng-show="attendees">{{attendees}} People Invited.</p>
+        <p>{{weighedIn}} People Weighed In.</p>
+      </div>
+    </div>
+    
+    
+    <div class="col-md-7">
+       <br/>
+      
+      
+    </div>
+    
+  </div>
+				
+
+							
+							<div class="panel m-t-20 z-depth-2 col-md-8 col-md-offset-2 col-sm-12">
+								<div class="meeting-date" style="font-size: 16px; font-weight: normal; display: block; margin-bottom: 24px;"><i class="fa fa-calendar"></i> {{(event.start | date:'EEEE, MMMM d')}}  <span>{{(event.start | date:'hh:mma')}} &ndash; {{ (event.end | date:'hh:mma')}}</span></div>
+									<h2 class="header-med">Participants</h2>
+									<p>{{event.emailCount }} People Invited &ndash; {{ event.reviewCount }} People Voted</p>
+									<p style="margin-bottom: 24px;"><i class="fa fa-user"></i> <a class="" href="/manage_participants/{{thread_id}}/{{event.id}}">Manage Participants</a></p>
+									<h2 class="header-med">Comments</h2>
+									<div class="comment-list">
+										<div ng-repeat= 'review in reviews | limitTo:3'>
+											{{ review.comment }}
+										</div>
+									<div class="collapse" id="comments">
+										<div ng-repeat= 'review in reviews.slice (3, reviews.length)' >
+											{{ review.comment }}
+										</div>
+									</div>
+								</div>
+								<a ng-show="reviews.length > 3" role="button" data-toggle="collapse" href="#comments" aria-expanded="false" aria-controls="collapseExample" style="display: block; padding-top: 12px;"> <i class="fa fa-chevron-down"></i> Show all comments</a>
+				            </div>
+						</div>
+			      	</div>
+			  	</div><!-- END container-fluid -->
+            </div><!-- END full-height full-width -->
+	    </div><!-- end content -->
+	</div><!-- END PAGE CONTENT -->
+</div><!-- end page container -->
+  
+
+  
+ 

@@ -1,0 +1,79 @@
+<style>#page-content {width:80%;margin:20px auto;}</style>
+<div class="row" style="margin-top: 20px;">
+  <div class="col-md-9">
+    <h2>Meeting Threads</h2>
+  </div>
+  <div class="col-md-3">
+    <!-- Single button -->
+    <a class="btn btn-info pull-right" href="/threads/add/cronofy">New Thread</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="lead">The following threads are the groups of meetings that will be measured.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="thread-wrapper" ng-repeat="thread in eventThreads">
+      <div class="thread-header">
+        <div class="header-items">
+          <div class="thread-title">
+            <a href="/thread_details/{{ thread.id }}">{{ thread.name || 'No Name' }}</a>
+          </div>
+          <div class="thread-averages">
+            <span class='avg-label'>Average Value</span>: <span class='avg-value'>{{ thread.avgValue || 0 }}</span>
+            <span class='avg-label second'>Average Progress</span>: <span class='avg-value'>{{ thread.avgProgress || 0 }}</span>
+          </div>
+          
+        </div>
+        <div class="thread-actions pull-right">
+          <a class="btn btn-sm show-meetings" type="button" data-toggle="collapse" data-target="#view-{{ thread.id }}" aria-expanded="false" aria-controls="collapseExample">Show Meetings</a>
+          <a class="btn btn-sm" href="/threads/edit/{{ thread.id }}">Edit Thread</a>
+          <a class="btn btn-default" href="/thread_details/{{ thread.id }}">View Results</a> 
+        </div>
+        <div class="clearfix"></div>
+      </div>      
+      <div class="thread-body">
+      
+        <div class="thread-meeting next-meeting">
+            <div class="event-summary">
+            <div ng-hide="thread.noNextEvent">
+                <strong>Next meeting</strong>: <a href="/event_details/{{ thread.id }}/{{ thread.firstEvent.id }}" class="event-name">{{ thread.firstEvent.summary }}</a>
+                <div class="event-details">
+                  <div class="cal-timing">
+                    <span class="cal-date"><i class="glyphicon glyphicon-calendar"></i> {{ thread.firstEvent.start | friendlyDate }}</span>
+                    <span class="cal-duration">{{ thread.firstEvent | formatDuration }}</span>
+                  </div>
+                  <div class="cal-participants">
+                    <i class="glyphicon glyphicon-user"></i> <a href="/manage_participants/{{ thread.id }}/{{ thread.firstEvent.id }}">View participants</a>
+                  </div>
+                </div>
+              </div>
+            <div ng-show="thread.noNextEvent">
+              <strong>No upcoming meetings. </strong> <a href="/threads/edit/{{ thread.id }}">Add More </a>
+            </div>
+            </div>
+            
+        </div><!-- end next meeting -->
+        <div class="collapse" id="view-{{ thread.id }}">
+            <div class="thread-meeting" ng-class="classForEvent(event)" ng-repeat="event in thread.events">
+                <div class="event-summary">
+                    <a href="/event_details/{{ thread.id }}/{{ event.id }}" class="event-name"> {{ event.summary }}</a>
+                </div>
+                <div class="event-details">
+                    <div class="cal-timing">
+                        <span class="cal-date"><i class="glyphicon glyphicon-calendar"></i> {{ event.start | friendlyDate }}</span>
+                        <span class="cal-duration">{{ event | formatDuration }}</span>
+                    </div>
+                    <div class="cal-participants">
+                        <i class="glyphicon glyphicon-user"></i> <a href="/manage_participants/{{ thread.id }}/{{ event.id }}">View participants</a>
+                    </div>
+                </div>
+            </div><!-- end thread meeting list -->
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

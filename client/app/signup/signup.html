@@ -1,0 +1,67 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="signup-box row">
+    <div class="signup-box-top"><h4 >Meeting Intelligence</h4></div>
+    <div class="signup-box-inside">
+      <h4 ><b>Sign Up</b></h4>
+      <div class="form-group">
+        <a  href="https://facebook.com" class="btn btn-primary" >Sign in with Facebook</a>&nbsp;&nbsp;&nbsp;
+        <a style="float: right" href="https://twitter.com/" class="btn btn-info">Sign in with Twitter</a>
+
+      </div>
+      <div class="form-group">
+        <h4 ><b>Or</b></h4>
+      </div>
+
+      <form id="create-user-form" class="form-horizontal col-md-12" name="form" ng-submit="login(form)">
+        <div class="form-group">
+          <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+            <input  type="text" class="form-control col-md-10" name="username" placeholder="Username" required="required" ng-model="user.username" mongoose-error=''>
+          </div>
+          <p class="help-block with-errors" ng-show='form.username.$error.mongoose'>{{ errors.username }}</p>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </span>
+            <input  type="email" class="form-control col-md-10" id="email" name="email" placeholder="E-mail" required="required" ng-model="user.email" mongoose-error=''>
+          </div>
+          <p class="help-block with-errors" ng-show='form.email.$error.mongoose'>{{ errors.email }}</p>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-lock"></span>
+            </span>
+            <input type="password" class="form-control " id="password" name="password" placeholder="Password" required="required" ng-model="user.password">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-lock"></span>
+            </span>
+            <input type="password" class="form-control " id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required="required" ng-model="user.confirmPassword">
+          </div>
+        </div>
+
+        <div class="signup-text">
+          <p>By creating an account, you agree with the
+            <a href="">Terms</a> and
+            <a href="">Conditions.</a>
+          </p>
+          <a href="/login">Login</a>
+        </div>
+
+        <div class="signup-bottom"><button class="btn btn-success btn-block" type="submit">Sign Up</button></div>
+
+      </form>
+    </div>
+  </div>
+</div>

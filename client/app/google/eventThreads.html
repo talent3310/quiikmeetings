@@ -1,0 +1,59 @@
+<h2 class="page-header" xmlns="http://www.w3.org/1999/html">Meeting Threads</h2>
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p>Instructions for each page will go here that Marco will write</p>
+</div>
+
+<div class="list-group">
+  <div class="alert alert-danger" ng-hide="eventThreads.length">No Thread Available</div>
+  <div ng-repeat= 'thread in eventThreads ' class="list-group-item">
+    <h4 class="list-group-item-heading"> {{thread.name || 'No Name'}}
+      <!--&#45;&#45; <span class="text-info"><b><a ng-href="/chart/{{thread.id}}/line">Line Chart</a></b></span>-->
+      <!--| <span class="text-info"><b><a ng-href="/chart/{{thread.id}}/scatter">Scatter Chart</a></b></span><br/>-->
+      <br/>
+        Average Value : {{thread.avgValue}}
+        Average Progress : {{thread.avgProgress}}
+        <!--&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-xs" ng-show="thread.avgValue||thread.avgProgress" href="/details/{{thread.id}}">View</a>-->
+        &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-xs"  href="/thread_details/{{thread.id}}">View</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-xs"  href="/edit_thread/{{thread.id}}">Edit</a>
+    </h4>
+
+      <div class="list-group-item" ng-repeat="event in thread.events">
+        <span class="text-info">Event</span> : <a ng-href="{{event.htmlLink}}"  target="_blank">{{event.summary}}</a>,  &nbsp; &nbsp;
+        <span class="text-info">Date</span>:  {{ event.start | date:'MM/dd/yyyy @ h:mma'}} - {{ event.end | date:'MM/dd/yyyy @ h:mma' }},  &nbsp; &nbsp;
+        <!--<span class="text-info"><b><a ng-href="/event_review/{{user.email}}/{{thread.id}}/{{event.id}}">Review</a></b></span>  &nbsp; &nbsp;-->
+        <!--<span ng-show="isAdmin()"> <b><a ng-click="getID(thread, event)" href="#{{thread.id}}/{{event.id}}"  data-toggle="modal" data-target="#reviewLinkModal" >Send Review Link</a></b>  </span> &nbsp; &nbsp;-->
+
+        <div class="modal fade" id="reviewLinkModal" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Send Review list</h4>
+              </div>
+
+              <div class="modal-body">
+                <form role="form" >
+                  <div class="form-group">
+                    <table class="table table-striped table-bordered">
+                      <tbody>
+                      <tr id='row{{$index}}' ng-repeat='user in users' >
+                        <td><input type="checkbox" name="email{{$index}}" value="email{{$index}}" ng-model="user.selected" ng-click="selectUser($event, users, user, $index)"/> {{user.firstname}} {{user.lastname}} {{user.email}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="sendReviewLink()">Send E-mail</button>
+                <button type="button" class="btn btn-primary" ng-click="close()"id="btn-close-modal" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<a href="/create_thread" class="btn btn-primary">Create Thread</a>

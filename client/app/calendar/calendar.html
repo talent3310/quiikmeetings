@@ -1,0 +1,111 @@
+<div class="row">
+  <h2 class="page-header">Availability Calendar</h2>
+
+  <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <p>Instructions for each page will go here that Marco will write</p>
+  </div>
+
+  <div id="availability-calendar" calendar-obj="calendarObj" calendar-directive></div>
+
+  <cl-bootstrap-dialog bt-dialog="dialog">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="availabilityLabel">Availability List</h4>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="form-group">
+        <label for="AgendaDate">Agenda Date:</label>
+        <input type="text" id="AgendaDate" placeholder="Agenda Date" ng-model="meeting.meetingDate" class="form-control"
+               ng-change="setEndTimeOnChange()" date-Picker>
+      </div>
+
+      <div class="form-group">
+        <label for="Agenda">Agenda:</label>
+        <input type="text" id="Agenda" placeholder="Agenda" ng-model="meeting.Agenda" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>Duration:</label>
+
+        <div>
+          <div class="btn-group" data-toggle="buttons" class="form-control">
+            <label class="btn btn-default active" ng-click="meeting.duration=1;setEndTimeOnChange()">
+              <input type="radio" id="duration1" name="Meeting.duration" value="1" checked="checked"/> 1 hour
+            </label>
+            <label class="btn btn-default" ng-click="meeting.duration=1.5;setEndTimeOnChange()">
+              <input type="radio" id="duration1_5" name="Meeting.duration" value="1.5"/> 1.5 hour
+            </label>
+            <label class="btn btn-default" ng-click="meeting.duration=2;setEndTimeOnChange()">
+              <input type="radio" id="duration2" name="Meeting.duration" value="2"/> 2 hour
+            </label>
+            <label class="btn btn-default" ng-click="meeting.duration=2.5;setEndTimeOnChange()">
+              <input type="radio" id="duration2_5" name="Meeting.duration" value="2.5"/> 2.5 hour
+            </label>
+            <label class="btn btn-default" ng-click="meeting.duration=3;setEndTimeOnChange()">
+              <input type="radio" id="duration3" name="Meeting.duration" value="3"/> 3 hour
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="newStartTime">Start Time:</label>
+        <input type="text" id="newStartTime" placeholder="Start Time" ng-model="meeting.meetingStartTime"
+               ng-change="setEndTimeOnChange()" class="form-control" time-Picker>
+      </div>
+
+      <div class="form-group">
+        <label for="newEndTime">End Time:</label>
+        <input time-Picker type="text" id="newEndTime" placeholder="End Time" ng-model="meeting.meetingEndTime"
+               class="form-control" ng-disabled="true">
+      </div>
+
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>Invite?</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Availability</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat='slot in availableSlots'>
+          <td>
+            <label> Invite</label>
+          </td>
+          <td>{{slot.user_id.firstname+' '+slot.user_id.lastname}}</td>
+          <td>{{slot.user_id.email}}</td>
+          <td>
+            <div class="form-inline" ng-repeat='time in slot.free_times' style="margin-bottom: 10px;">
+              <div class="form-group">
+                <input type="checkbox" ng-model="time.selected"
+                       ng-click="checkSelectSlot($event, slot.free_times, slot, time)">
+                <label class="text-info">
+                  {{ time.start_time }}-{{time.end_time}}
+                </label>
+
+              </div>
+              <br/>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" id="btn-close-modal" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" id="btn-send-invite" ng-click="sendInvites()">Send invites</button>
+      <button type="button" class="btn btn-primary" id="btn-user-availability" ng-click="AddUserAvailability()">Add
+        availability
+      </button>
+    </div>
+
+  </cl-bootstrap-dialog>
+
+</div>

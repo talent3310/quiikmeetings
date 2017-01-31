@@ -1,0 +1,11 @@
+node_modules
+client/bower_components
+npm-debug.log
+.idea
+.bak
+.log
+.DS_Store
+logs
+*.pyc
+server/config/*.json
+server/config

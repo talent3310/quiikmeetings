@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="box col-md-6">
+    <div class="box-top"><h4 >Meeting Intelligence</h4></div>
+    <div class="box-inside">
+      <h5 ><b>Forgot your username?</b></h5>
+      <h6>Enter your email below and we'll see if we can find you.</h6>
+
+      <form id="create-user-form" class="form-horizontal col-md-12" name="form" ng-submit="login(form)">
+        <div class="form-group">
+          <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </span>
+            <input  type="email" class="form-control col-md-10" id="email" name="email" placeholder="Your email" required="required" ng-model="user.email" mongoose-error=''>
+          </div>
+          <p class="help-block with-errors" ng-show='form.email.$error.mongoose'>{{ errors.email }}</p>
+        </div>
+
+        <h6>Don't remember your email?&nbsp;<a href="">Contact Support.</a></h6>
+
+        <div class="signup-bottom"><button class="btn btn-primary btn-block" type="submit">Check Email</button></div>
+      </form>
+
+    </div>
+  </div>
+</div>

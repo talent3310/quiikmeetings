@@ -1,0 +1,53 @@
+<!-- BEGIN SIDEBAR -->
+<div class="page-sidebar" data-pages="sidebar" pg-sidebar >
+	<div id="appMenu" class="sidebar-overlay-slide from-top"></div>
+	
+	<!-- BEGIN SIDEBAR MENU -->
+	<div class="sidebar-menu">
+		<ul class="menu-items">
+			<li class="m-t-30" ng-class='{active: isActive("/threads")}' >
+				<a href="#"><span class="title">Threads</span></a>
+				<a href="/threads" class="icon-thumbnail "><i class="fa fa-list-ul fa-2x"></i></a>
+			</li>
+			<li ng-class='{active: isActive("/threads/add/cronofy")}' >
+				<a href="/threads/add/cronofy"><span class="title">New</span></a>
+				<a href="/threads/add/cronofy" class="icon-thumbnail "><i class="fa fa-plus-circle fa-2x"></i></a>
+			</li>
+			<li ng-class='{active: isActive("/select_calendar")}' >
+				<a href="/select_calendar"><span class="title">Settings</span></a>
+				<a href="/select_calendar" class="icon-thumbnail"><i class="fa fa-gears fa-2x"></i></a>
+			</li>
+			<li ng-class='{active: isActive("/google_calendar")}' >
+				<a href="/google_calendar"><span class="title">Calendar</span></a>
+				<a href="/google_calendar" class="icon-thumbnail"><i class="fa fa-calendar fa-2x"></i></a>
+			</li>
+			<!--<li ng-class='{active: isActive("/user-list")}' ng-show='isAdmin()'>-->
+			<li ng-class='{active: isActive("/user-list")}'>
+				<a href="/user-list"><span class="title">Users</span></a>
+				<a href="/user-list" class="icon-thumbnail"><i class="fa fa-users fa-2x"></i></a>
+			</li>
+			
+		</ul>
+		<div class="clearfix"></div>
+		
+		
+		
+        
+	</div>
+	<!-- END SIDEBAR MENU -->
+</div>
+<!-- END SIDEBAR -->
+
+<div class="dropup" style="position:fixed;z-index:999999;bottom:20px;left:20px" ng-controller='NavbarCtrl'>
+            <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="thumbnail-wrapper d32 circular inline m-t-5">
+		            <img src="assets/img/profiles/avatar_small2x.jpg" alt="" data-src="assets/img/profiles/avatar.jpg" ui-jq="unveil" data-src-retina="assets/img/profiles/avatar_small2x.jpg" height="32" width="32">
+		        </span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+	            <li ng-class='{active: isActive("/select_calendar")}' ><a href="/select_calendar">Manage Calendars</a></li>
+		        <li ng-show='isLoggedIn()'><a href="" ng-click="logout()">Logout</a></li>
+		        <li role="separator" class="divider"></li>
+				<li><p class="navbar-text"><i>Logged in as:</i> {{getCurrentUser().name}}</p></li>
+            </ul>
+        </div>

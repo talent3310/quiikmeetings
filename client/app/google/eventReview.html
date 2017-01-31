@@ -1,0 +1,85 @@
+<div class="container" ng-hide="!notSubmitted">
+
+	<form class="form-horizontal col-sm-12" name="form" ng-submit="saveReview(form)" style="margin-top:50px">
+		<div class="row" style="min-height:150px">
+			<label style="font-size:1.3em">How valuable was this meeting?</label>
+			<div class="col-md-6 col-sm-12 col-xs-12 pull-right">
+				<ol id="valueGuide" style="margin-top:30px;padding: 10px 30px;background: #dff1ff none repeat scroll 0 0;border-radius: 5px;">
+					<li>Negative Value</li>
+					<li>No Value</li>
+					<li>Moderate Value (met my expectations)</li>
+					<li>Good Value (exceeded my expectations)</li>
+					<li>Excellent. Breakthough “Aha moments” value.</li>
+				</ol>
+			</div>
+			<div class="form-group col-md-6">
+				
+				<select id="valueSelect" class="form-control" ng-model="reviewItems.rankValue" required=""  ng-options="k as v for (k,v) in rank">
+					<option value="">Select Value...</option>
+				</select>
+			</div>
+			
+		</div>
+		
+		<div class="row" style="min-height:150px">
+			<label style="font-size:1.3em">How would you rate the progress since last meeting?</label>
+			<div class="col-md-6 col-sm-12 col-xs-12 pull-right">
+				<ol id="progressGuide" style="margin-top:30px;padding: 10px 30px;background: #dff1ff none repeat scroll 0 0;border-radius: 5px;">
+					<li>We’re going backward</li>
+					<li>No Progress</li>
+					<li>Good Progress (met my expectations)</li>
+					<li>Great Progress (exceeded my expectations)</li>
+					<li>Excellent. Breakthough Progress.</li>
+				</ol>
+			</div>
+			<div class="form-group col-md-6">
+				
+				<select class="form-control" id="progressSelect" ng-model="reviewItems.rankProgress" required="" ng-options="k as v for (k,v) in progress">
+					<option value="">Select Progress...</option>
+				</select>
+			</div>
+			
+		</div>
+		
+		<div class="row" style="margin-top:25px">
+			<div class="form-group col-md-6 col-sm-12">
+			<label style="font-size:1.3em">Any insights on what you liked or what could be improved?</label>
+			<textarea rows="7" class="form-control" name="comment" placeholder="Comments" ng-model="reviewItems.comment"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-12">
+				<button class="btn btn-primary" type="submit">Save</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+<div class="container">
+	<div class="row" style="padding-top:25px">
+		<div class="col-sm-12">
+			<div ng-hide="notSubmitted">
+				<h4> Thank you for your review submission !</h4>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+	$('#valueSelect').focus(function() {
+	    var div = $('#valueGuide').show();
+	});
+	$('#valueSelect').blur(function() {
+	    var div = $('#valueGuide').hide();
+	});
+	$('#progressSelect').focus(function() {
+	    var div = $('#progressGuide').show();
+	});
+	$('#progressSelect').blur(function() {
+	    var div = $('#progressGuide').hide();
+	});
+	$('#valueGuide').hide();
+	$('#progressGuide').hide();
+</script>

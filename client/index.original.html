@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <base href="/">
+  <title></title>
+  <meta name="description" content="">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/extra_style.css" rel="stylesheet">
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="bower_components/bootbox/bootbox.js"></script>
+  <script type="text/javascript" src="bower_components/moment/moment.js"></script>
+  <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+</head>
+<body ng-app="calendarApp">
+  <nav class="navbar navbar-fixed-top" ng-controller='NavbarCtrl'>
+    <div class="container">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="font-size:16px"><img src="css/quiik-icon.png" style="width:36px;margin-top:-9px"/> Quiik Meetings</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav pull-right" id="sidebar" ng-show='isLoggedIn()'>
+          <!--<li ng-class='{active: isActive("/home")}'><a href="/home">Home</a></li>-->
+          <li ng-class='{active: isActive("/threads/")}' ><a href="/threads/">Meeting Threads</a></li>
+          <li ng-class='{active: isActive("/threads/add/google")}'><a href="/threads/add/google">New Thread</a></li>
+          <!-- <li ng-class='{active: isActive("/google_calendar")}' ><a href="/google_calendar">Thread Calendar<span class="sr-only">(current)</span></a></li> -->
+          <!-- <li ng-class='{active: isActive("/google_events")}' ><a href="/create_thread">Create Thread</a></li> -->
+          <!-- <li ng-class='{active: isActive("/user-list")}' ng-show='isAdmin()'><a href="/user-list">Users</a></li> -->
+          <!--<li><a href="#contact">Contact</a></li>-->
+          <li ng-show='isLoggedIn()' class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          	
+          	
+          	<li ng-class='{active: isActive("/select_calendar")}' ><a href="/select_calendar">Manage Calendars</a></li>
+	        <li ng-show='isLoggedIn()'><a href="" ng-click="logout()">Logout</a></li>
+	        <li role="separator" class="divider"></li>
+	        <li><p class="navbar-text"><i>Logged in as:</i> {{getCurrentUser().name}}</p></li>
+          </ul>
+        </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div>
+  </nav>
+  <div class="container" >
+    <div class="row col-sm-offset-0"  id="page-content" ui-view="">
+
+    </div>
+  </div>
+  <script type="text/javascript">
+    window.require = {
+      waitSeconds: 200
+    };
+  </script>
+
+
+  <!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.min.js"></script>
+  <![endif]-->
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/ngtoast/dist/ngToast.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+  <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+
+  <script src="app/app.js"></script>
+  <script src="app/user/user.js"></script>
+  <script src="app/home/main.controller.js"></script>
+  <script src="app/home/main.js"></script>
+  <script src="app/contact/contact.controller.js"></script>
+  <script src="app/contact/contact.js"></script>
+  <script src="app/user/user.controller.js"></script>
+  <script src="app/user/availability.controller.js"></script>
+  <script src="app/login/login.controller.js"></script>
+  <script src="app/admin/admin.controller.js"></script>
+
+  <script src="app/calendar/calendar.controller.js"></script>
+  <script src="app/calendar/calendar.js"></script>
+  <script src="app/calendar/calendar.directive.js"></script>
+  <script src="app/google/googleCalendar.js"></script>
+  <script src="app/google/googleCalendar.controller.js"></script>
+  <script src="app/google/googleEvents.controller.js"></script>
+  <script src="app/google/eventReview.controller.js"></script>
+  <script src="app/google/selectCalendar.controller.js"></script>
+
+  <script src="app/chart/chart.controller.js"></script>
+  <script src="app/chart/chart.js"></script>
+
+  <script src="app/thread_details/threadDetails.controller.js"></script>
+  <script src="app/thread_details/moreDetails.controller.js"></script>
+  <script src="app/thread_details/eventDetails.controller.js"></script>
+  <script src="app/thread_details/manageParticipants.controller.js"></script>
+  <script src="app/thread_details/threadDetails.js"></script>
+
+  <script src="app/signup/signup.controller.js"></script>
+  <script src="app/signup/signup.js"></script>
+
+  <script src="app/password/forgotPassword.controller.js"></script>
+  <script src="app/password/forgotPassword.js"></script>
+
+  <script src="app/username/forgotUsername.controller.js"></script>
+  <script src="app/username/forgotUsername.js"></script>
+  
+  <script src="app/thread/thread.js"></script>
+  <script src="app/thread/threadEdit.controller.js"></script>
+  <script src="app/thread/threadList.controller.js"></script>
+
+  <script src="common/directives/bootstrapDialog.directive.js"></script>
+  <script src="common/directives/bootstrapDatepicker.directive.js"></script>
+
+  <!--services-->
+  <script src="components/auth/auth.service.js"></script>
+  <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+  <script src="components/user/user.service.js"></script>
+  <script src="components/user/availability.service.js"></script>
+  <script src="components/dialog/bootbox.service.js"></script>
+  <script src="components/calendar-ui/calendar-ui.service.js"></script>
+  <script src="components/navbar/navbar.controller.js"></script>
+  <script src="components/google/googleCalendar.js"></script>
+  <script src="components/google/eventThread.js"></script>
+  <script src="components/google/review.service.js"></script>
+  <script src="components/google/event.service.js"></script>
+  <script src="components/google/event.js"></script>
+
+
+  <script src="http://code.highcharts.com/highcharts.src.js"></script>
+  <script src="http://code.highcharts.com/adapters/standalone-framework.js"></script>
+
+
+
+
+</body>
+</html>
